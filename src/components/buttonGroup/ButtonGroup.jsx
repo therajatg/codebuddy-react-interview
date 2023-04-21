@@ -2,7 +2,6 @@ import style from './buttonGroup.module.css';
 import Button from 'react-bootstrap/Button';
 
 export const ButtonGroup = ({ formNumber, setKey }) => {
-  console.log(setKey);
   return (
     <div className={style.buttonGroup}>
       <Button

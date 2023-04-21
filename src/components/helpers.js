@@ -105,7 +105,6 @@ export const formThreeSubmitHandler = (
     } else {
       fetch('https://codebuddy.review/submit', requestOptions)
         .then(response => response.json())
-        .then(data => console.log(data))
         .then(() => navigate('/posts'))
         .catch(error => console.log(error));
     }
