@@ -9,7 +9,7 @@ import {
   formOneSubmitHandler,
   formTwoSubmitHandler,
   formThreeSubmitHandler,
-} from '../../helpers';
+} from '../helpers';
 import { DefaultInput } from '../defaultInput/DefaultInput';
 import { ButtonGroup } from '../buttonGroup/ButtonGroup';
 import style from './allForms.module.css';
@@ -179,6 +179,7 @@ export function FormThree({
             address,
             selectedCountry,
             navigate,
+            setKey,
           )
         }
       >

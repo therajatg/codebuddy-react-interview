@@ -4,13 +4,13 @@ import style from './posts.module.css';
 
 export const Posts = () => {
   const [posts, setPosts] = useState([]);
-  console.log(posts);
   useEffect(() => {
     fetch('https://codebuddy.review/posts')
       .then(response => response.json())
       .then(data => setPosts(data.data.posts))
       .catch(error => console.log(error));
   }, []);
+
   return (
     <div className={style.postsContainer}>
       {posts?.map(post => (

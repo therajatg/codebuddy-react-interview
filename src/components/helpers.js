@@ -6,7 +6,7 @@ export const validateEmail = text => {
 export const validatePassword = value => {
   const regex =
     /^(?=.*[A-Z]{2})(?=.*[a-z]{2})(?=.*\d{2})(?=.*[!@#$%^&*()_\-+={}[\]\\|:;"'<>,.?/]{2}).{8,}$/;
-  return value && !regex.test(value)
+  return !regex.test(value)
     ? 'Please enter 2 capital letters, 2 small letters, 2 numbers and 2 special character.'
     : undefined;
 };
@@ -78,11 +78,10 @@ export const formThreeSubmitHandler = (
   address,
   countryCode,
   navigate,
+  setKey,
 ) => {
   event.preventDefault();
   if (validateContact(contact) === undefined) {
-    setShowSuccess(true);
-    setTimeout(() => setShowSuccess(false), 3000);
     const requestOptions = {
       method: 'POST',
       body: JSON.stringify({
@@ -95,10 +94,20 @@ export const formThreeSubmitHandler = (
         'phoneNumber': contact,
       }),
     };
-    fetch('https://codebuddy.review/submit', requestOptions)
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .then(() => navigate('/posts'))
-      .catch(error => console.log(error));
+
+    if (validateEmail(email) !== undefined || validatePassword(password) !== undefined) {
+      setKey('1');
+    } else if (
+      validateFirstName(firstName) !== undefined ||
+      validateAddress(address) !== undefined
+    ) {
+      setKey('2');
+    } else {
+      fetch('https://codebuddy.review/submit', requestOptions)
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .then(() => navigate('/posts'))
+        .catch(error => console.log(error));
+    }
   }
 };
