@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { PostCard } from '../components/postCard/PostCard';
+import { PostCard } from '../../components/postCard/PostCard';
+import style from './posts.module.css';
 
 export const Posts = () => {
   const [posts, setPosts] = useState([]);
@@ -11,8 +12,7 @@ export const Posts = () => {
       .catch(error => console.log(error));
   }, []);
   return (
-    <div className="posts">
-      {console.log(posts)}
+    <div className={style.postsContainer}>
       {posts?.map(post => (
         <PostCard
           key={post.id}

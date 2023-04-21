@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FormOne, FormTwo, FormThree } from '../components/allForms/AllForms';
+import { FormOne, FormTwo, FormThree } from '../../components/allForms/AllForms';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
+import style from './home.module.css';
 
 export const Home = () => {
   const [email, setEmail] = useState('');
@@ -18,8 +19,12 @@ export const Home = () => {
   const navigate = useNavigate();
 
   return (
-    <main className="formContainer">
-      <Tabs activeKey={key} onSelect={k => setKey(k)} className="mb-3">
+    <main className={style.tabContainer}>
+      <Tabs
+        activeKey={key}
+        onSelect={k => setKey(k)}
+        className={`border-bottom-0 mt-5 ${style.tabs}`}
+      >
         <Tab eventKey="1" title="Form 1">
           <FormOne
             email={email}
